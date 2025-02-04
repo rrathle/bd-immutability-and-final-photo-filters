@@ -19,7 +19,8 @@ public class InversionConverter implements PrimePhotoConverter {
 
         for (Pixel pixel : image.getPixels()) {
             RGB rgb = pixel.getRGB();
-            rgb.invert();
+            //rgb.invert(); replace with
+            rgb = rgb.invert();
             pixels.add(new Pixel(pixel.getX(), pixel.getY(), rgb));
         }
 

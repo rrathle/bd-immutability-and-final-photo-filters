@@ -1,30 +1,41 @@
 package com.amazon.ata.immutabilityandfinal.classroom.primephoto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * A class representing a PrimePhoto - contains dimensions, and a list of Pixels that make up the image.
  */
-public class PrimePhoto {
-    private List<Pixel> pixels;
-    private int height;
-    private int width;
+public final class PrimePhoto {
+    //1. make the class final
+    //2. make the instance variables final
+    //3 check constructors for reference parameters and replace assignments with defensive copy
+    //4. make sure any references returned are defensive return
+    //5. ensure that there are no setters in the class
+    //6. modify the existing code so no instance variables are changed
+    private final List<Pixel> pixels;
+    private final int height;
+    private final int width;
     // used when saving to a buffered image
-    private int type;
+    private final int type;
 
+    //constructor contains a refernce parameter-List is a parameter- so a defensive copy needs to happen
     public PrimePhoto(List<Pixel> pixelList, int height, int width, int type) {
         if (pixelList.size() != (height * width)) {
             throw new IllegalArgumentException("Not enough pixels for the dimensions of the image.");
         }
-        this.pixels = pixelList;
+        this.pixels = new ArrayList<>(pixelList); //copy the parameter into our variable
         this.height = height;
         this.width = width;
         this.type = type;
     }
 
+    //this returns a reference list is an object whihc is an reference
     public List<Pixel> getPixels() {
-        return pixels;
+
+        //return pixels;
+        return new ArrayList<>(pixels);
     }
 
     public int getHeight() {
